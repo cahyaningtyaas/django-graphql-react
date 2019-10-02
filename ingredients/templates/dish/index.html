@@ -1,0 +1,20 @@
+{% extends 'dish/base.html' %}
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <h3> Dish </h3>
+
+        </div>
+        <div class="row">
+            <ul>
+                {% for dish in dish_list %}
+                <li>
+                    {{dish.name}}
+                </li>      
+                {% endfor %}          
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
