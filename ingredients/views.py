@@ -1,3 +1,6 @@
+import csv
+from django.http import HttpResponse
+# from django.contrib.auth.models import 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Dish
 from .serializers import DishSerializer
@@ -43,3 +46,17 @@ def dishdelete(request, template_name='dish/confirm_delete.html'):
         dish.delete()
         return redirect('index')
     return render(request, template_name, {'object':dish})
+
+def dishexport(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition']='attachment;filename="dish.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['pk','name','description'])
+
+    dish_ = Dish.objects.all().values_list('pk','name', 'description')
+
+    for dish in dish_:
+        writer.writerow(dish)
+        
+    return response

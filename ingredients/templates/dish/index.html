@@ -3,14 +3,14 @@
 
     <div class="container-fluid">
         <div class="row">
-            <h3> Dish </h3>
+            <h3> <a href="{% url 'dishexport' %}"> Dish </a></h3>
 
         </div>
         <div class="row">
             <ul>
                 {% for dish in dish_list %}
                 <li>
-                    {{dish.name}}
+                    {{dish.pk}}<a href="{% url 'dishdetail' dish.pk %}"> {{dish.name}} </a>
                 </li>      
                 {% endfor %}          
             </ul>

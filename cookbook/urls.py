@@ -25,7 +25,7 @@ urlpatterns = [
     # path('graph')
     url(r'admin/', admin.site.urls),
     url(r'graphql$', GraphQLView.as_view(graphiql=True, schema=schema)),
-    url(r'',include('ingredients.urls')),
+    url(r'', include('ingredients.urls')),
     url(r'', include('frontend.urls')),
     # url(r'', include(''))
 ]
